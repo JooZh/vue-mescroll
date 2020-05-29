@@ -6,6 +6,12 @@ import './assets/css/reset.css'
 
 Vue.config.productionTip = false
 
+import scroll from './components/index.vue'
+
+import service from './service/mock.js'
+
+Vue.component('mescroll',scroll)
+
 new Vue({
 	router,
 	render: function(h) {

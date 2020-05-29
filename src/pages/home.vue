@@ -1,13 +1,18 @@
 <template>
   <div>
-    <p class="header">mescroll + vue 案例</p>
+    <p class="header">vue-mescroll</p>
     <div class="content">
-      <router-link to="listNews">list-news 新闻列表 <span class="tip">下拉刷新添加数据到列表顶部</span></router-link>
+      <router-link to="refresh">Refresh<span class="tip">下拉刷新，自动加载数据</span></router-link>
+      <router-link to="pagination">Pagination<span class="tip">分页加载更多数据,自动加载第一页</span></router-link>
+      <router-link to="refresh-pagination">Refresh+Pagination<span class="tip">分页和刷新配合，用刷新加载第一页</span></router-link>
+      <router-link to="refresh-pagination2">Refresh+Pagination<span class="tip">分页和刷新配合，用分页加载第一页</span></router-link>
+      <router-link to="tabs">Tabs <span class="tip">Tab菜单隐现显示，刷新加载第一页</span></router-link>
+      <router-link to="tabs-swiper">Tabs+Swiper <span class="tip">菜单和轮播配合，刷新加载第一页</span></router-link>
+
       <router-link to="listProducts">list-products 商品列表 <span class="tip">下拉刷新重置列表数据</span></router-link>
       <router-link to="mescrollComponent">mescroll-vue 组件 <span class="tip" style="color:red">强烈推荐以组件的方式使用</span></router-link>
       <router-link to="mescrollOptions">mescroll-options 所有配置项 <span class="tip">快速熟悉mescroll</span></router-link>
       <router-link to="mescrollMore">mescroll-more 多mescroll <span class="tip">列表仅初始化一次,缓存数据</span></router-link>
-      <router-link to="mescrollSwiperNav">mescroll-swiper-nav <span class="tip">轮播菜单</span></router-link>
     </div>
   </div>
 </template>

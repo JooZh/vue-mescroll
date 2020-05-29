@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/pages/home'
-import listNews from '@/pages/base/list-news'
+import Refresh from '@/pages/base/refresh'
+import Pagination from '@/pages/base/pagination'
+import RefreshPagination from '@/pages/base/refresh-pagination'
+import RefreshPagination2 from '@/pages/base/refresh-pagination2'
+import Tabs from '@/pages/base/tabs'
+import TabsSwiper from '@/pages/base/tabs-swiper'
+
 import mescrollOptions from '@/pages/base/mescroll-options'
 import listProducts from '@/pages/base/list-products'
 import mescrollComponent from '@/pages/base/mescroll-component'
 import mescrollMore from '@/pages/base/mescroll-more'
-import mescrollSwiperNav from '@/pages/base/mescroll-swiper-nav'
 
 Vue.use(Router)
 
@@ -17,9 +22,29 @@ export default new Router({
       name: 'home',
       component: home
     }, {
-      path: '/listNews',
-      name: 'listNews',
-      component: listNews
+      path: '/pagination',
+      name: 'Pagination',
+      component: Pagination
+    }, {
+      path: '/refresh',
+      name: 'Pagination',
+      component: Refresh
+    }, {
+      path: '/refresh-pagination',
+      name: 'RefreshPagination',
+      component: RefreshPagination
+    }, {
+      path: '/refresh-pagination2',
+      name: 'RefreshPagination2',
+      component: RefreshPagination2
+    }, {
+      path: '/tabs',
+      name: 'Tabs',
+      component: Tabs
+    }, {
+      path: '/tabs-swiper',
+      name: 'TabsSwiper',
+      component: TabsSwiper
     }, {
       path: '/mescrollOptions',
       name: 'mescrollOptions',
@@ -36,10 +61,6 @@ export default new Router({
       path: '/mescrollMore',
       name: 'mescrollMore',
       component: mescrollMore
-    }, {
-      path: '/mescrollSwiperNav',
-      name: 'mescrollSwiperNav',
-      component: mescrollSwiperNav
     }
   ]
 })

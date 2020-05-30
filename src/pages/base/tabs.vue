@@ -24,7 +24,7 @@
     </div>
     <div class="tabs-center">
       <template v-for="(tab,i) in tabs">
-        <mescroll
+        <vue-mescroll
           :key="tab.tabId"
           v-show="i===curIndex"
           :autoInit="tab.isListInit"
@@ -33,7 +33,7 @@
           :loadDataCallBack="loadData"
           :dataHandle="dataHandle"
           :enableRefresh="true"
-        ></mescroll>
+        ></vue-mescroll>
       </template>
     </div>
   </div>

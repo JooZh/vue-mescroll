@@ -6,7 +6,7 @@
       <span>分页加载</span>
     </p>
     <!--滑动区域-->
-    <mescroll
+    <vue-mescroll
       :loadDataCallBack="loadData"
       :getData="getData"
       :dataHandle="dataHandle"
@@ -15,7 +15,8 @@
       :enablePagination="false"
       :autoLoad="false"
     >
-      <div>
+      <!-- <div slot="header">13123</div> -->
+      <div class="slot">
         <p class="notice">下拉刷新: 用刷新的方式加载数据</p>
         <ul id="newsList" class="news-list">
           <li v-for="news in newArr" :key="news.id">
@@ -24,7 +25,8 @@
           </li>
         </ul>
       </div>
-    </mescroll>
+      <!-- <div slot="footer">13123</div> -->
+    </vue-mescroll>
   </div>
 </template>
 

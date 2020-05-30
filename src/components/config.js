@@ -1,3 +1,4 @@
+
 export function getConfig(vm){
     
     // let upDefaultConfig = {

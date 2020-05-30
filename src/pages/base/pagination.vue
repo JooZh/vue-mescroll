@@ -6,7 +6,7 @@
       <span>分页自动加载</span>
     </p>
     <!--滑动区域-->
-    <mescroll
+    <vue-mescroll
       :loadDataCallBack="loadData"
       :getData="getData"
       :dataHandle="dataHandle"
@@ -20,7 +20,7 @@
           </li>
         </ul>
       </div>
-    </mescroll>
+    </vue-mescroll>
   </div>
 </template>
 

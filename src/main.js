@@ -3,14 +3,18 @@ import App from './App.vue'
 import router from './router'
 // import './assets/css/normalize.css'
 import './assets/css/reset.css'
+// 引入mescroll的css文件
+import './assets/mescroll-config/mescroll-option.css'
 
 Vue.config.productionTip = false
 
-import scroll from './components/index.vue'
+import mescroll from './components/index.js'
+// 引入mescroll的js文件
+import mescrollConfig from './assets/mescroll-config/mescroll-option.js'
 
 import service from './service/mock.js'
 
-Vue.component('mescroll',scroll)
+Vue.use(mescroll,mescrollConfig)
 
 new Vue({
 	router,

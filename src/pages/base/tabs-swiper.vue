@@ -25,7 +25,7 @@
     <!--轮播-->
     <swiper ref="mySwiper" :options="swiperOption">
       <swiper-slide v-for="tab in tabs" :key="tab.tabId">
-        <mescroll
+        <vue-mescroll
           :autoInit="tab.isListInit"
           :viewItemComponent="Item"
           :queryParams="queryParams"
@@ -34,7 +34,7 @@
           :enableRefresh="true"
           :autoRefresh="true"
           :autoLoad="false"
-        ></mescroll>
+        ></vue-mescroll>
       </swiper-slide>
     </swiper>
   </div>

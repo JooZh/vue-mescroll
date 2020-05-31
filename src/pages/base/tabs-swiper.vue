@@ -1,9 +1,7 @@
 <template>
   <div>
     <!--标题-->
-    <div class="header">
-      <router-link class="btn-left" to="/">返回</router-link>
-      <p class="title">Tabs-Swiper</p>
+     <Header title="Tabs-Swiper">
       <!--菜单. 如果up配置了isBounce为false,则需加上mescroll-touch-x,原因: http://www.mescroll.com/qa.html#q10 -->
       <div class="tabs-warp">
         <div ref="tabsContent" class="tabs-content mescroll-touch-x">
@@ -21,7 +19,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </Header>
     <!--轮播-->
     <swiper ref="mySwiper" :options="swiperOption">
       <swiper-slide v-for="tab in tabs" :key="tab.tabId">
@@ -128,37 +126,17 @@ export default {
 </script>
 
 <style scoped>
-  /*模拟的标题*/
-  .header{
-    z-index: 9990;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    line-height: 16px;
-    text-align: center;
-    background-color: white;
-  }
-  .header .btn-left{
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding:12px 12px 0 12px;
-  }
-  .header .title{
-    margin-top: 12px;
-  }
   /*菜单*/
   .tabs-warp{
     height: 42px;/*高度比tabs-content小, 目的是隐藏tabs的水平滚动条*/
     overflow-y: hidden;
-    border-bottom: 1px solid #eee;
     box-sizing: content-box;
+    text-align: center;
   }
+  .tabs-warp ::-webkit-scrollbar {display:none}
   .tabs-warp .tabs-content{
     width: 100%;
-    height: 50px;
+    height: 100%;
     overflow-x: auto;
   }
   .tabs-warp .tabs-content .tabs{
@@ -184,11 +162,9 @@ export default {
   /*列表*/
   .swiper-container{
     position: fixed;
-    top: 70px;
+    top: 88px;
     left: 0;
     right: 0;
     bottom: 0;
   }
-
-  
 </style>

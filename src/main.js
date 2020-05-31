@@ -3,18 +3,21 @@ import App from './App.vue'
 import router from './router'
 // import './assets/css/normalize.css'
 import './assets/css/reset.css'
-// 引入mescroll的css文件
-import './assets/mescroll-config/mescroll-option.css'
 
 Vue.config.productionTip = false
 
-import mescroll from './components/index.js'
-// 引入mescroll的js文件
+// 引入mescroll的文件
+import mescroll from './mescroll/index.js'
+import './assets/mescroll-config/mescroll-option.css'
 import mescrollConfig from './assets/mescroll-config/mescroll-option.js'
 
 import service from './service/mock.js'
 
 Vue.use(mescroll,mescrollConfig)
+
+import Header from './components/Header.vue'
+Vue.component('Header',Header)
+
 
 new Vue({
 	router,

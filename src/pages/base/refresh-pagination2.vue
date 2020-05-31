@@ -1,10 +1,7 @@
 <template>
   <div class="page">
     <!--标题-->
-    <p class="header">
-      <router-link class="btn-left" to="/">返回</router-link>
-      <span>分页加载</span>
-    </p>
+    <Header title="刷新+分页2"></Header>
     <!--滑动区域-->
     <vue-mescroll
       :loadDataCallBack="loadData"
@@ -72,39 +69,10 @@ export default {
   /*以fixed的方式固定mescroll的高度*/
   .mescroll {
     position: fixed;
-    top: 44px;
+    top: 45px;
     bottom: 0;
     height: auto;
   }
-
-  .header {
-    z-index: 9990;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 44px;
-    line-height: 44px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    background-color: white;
-  }
-
-  .header .btn-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 12px;
-    line-height: 22px;
-  }
-
-  .header .btn-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 12px;
-  }
-
   .mescroll .notice {
     font-size: 14px;
     padding: 20px 0;

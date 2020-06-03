@@ -1,6 +1,5 @@
 
 export function getConfig(vm){
-    
     // let upDefaultConfig = {
     //     use: true, // 是否初始化上拉加载; 默认true
     //     auto: true, // 是否在初始化时以上拉加载的方式自动加载第一页数据; 默认true

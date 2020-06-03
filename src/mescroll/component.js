@@ -1,7 +1,6 @@
-
-import MeScroll from 'mescroll.js';
+import '../libs/mescroll.js/dist/mescroll.min.css';
+import MeScroll from '../libs/mescroll.js/dist/mescroll.min.js';
 import { getConfig } from './config.js';
-import 'mescroll.js/mescroll.min.css';
 
 const PAGINATION = {
     pageSize: { name: 'rows', value: 10 },
@@ -97,7 +96,10 @@ export default (config) => {
                 type: Object,
                 required: false,
                 description: '上拉加载配置参数',
-                default: ()=>{return config.up || null } 
+                default: ()=>{return config.up || {
+                        isBounce: false
+                    } 
+                } 
             },
             // 分页渲染可选功能
             viewItemComponent: {

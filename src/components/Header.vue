@@ -3,7 +3,7 @@
       <div class="hd">
         <router-link class="btn-left" to="/" v-show="leftBtn">返回</router-link>
         <span class="title">{{title}}</span>
-        <span class="btn-right"></span>
+        <span class="btn-right" v-show="rightBtn"></span>
       </div>
       <slot></slot>
   </div>
@@ -13,6 +13,10 @@
 export default {
     props:{
         leftBtn:{
+            type:Boolean,
+            default:true
+        },
+        rightBtn:{
             type:Boolean,
             default:true
         },
@@ -32,7 +36,7 @@ export default {
 <style scoped>
     .header {
         z-index: 9990;
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
@@ -42,6 +46,7 @@ export default {
         border-bottom: 1px solid #eee;
     }
     .header .hd{
+        width: 100%;
         height: 44px;
         line-height: 44px;
         text-align: center;

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <Content>
     <!--标题-->
-    <Header title="Vue-Mescroll" :leftBtn="false"></Header>
+    <Header title="Vue-Mescroll" :leftBtn="false" :rightBtn="false"></Header>
     <div class="content">
       <router-link to="refresh">Refresh<span class="tip">下拉刷新，自动加载数据</span></router-link>
       <router-link to="pagination">Pagination<span class="tip">分页加载更多数据,自动加载第一页</span></router-link>
@@ -10,7 +10,7 @@
       <router-link to="tabs">Tabs <span class="tip">Tab菜单隐现显示，刷新加载第一页</span></router-link>
       <router-link to="tabs-swiper">Tabs+Swiper <span class="tip">菜单和轮播配合，刷新加载第一页</span></router-link>
     </div>
-  </div>
+  </Content>
 </template>
 
 <script>

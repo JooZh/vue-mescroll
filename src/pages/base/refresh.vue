@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+    <Content>
     <!--标题-->
     <Header title="下拉刷新"></Header>
     <!--滑动区域-->
@@ -24,7 +24,7 @@
       </div>
       <!-- <div slot="footer">13123</div> -->
     </vue-mescroll>
-  </div>
+  </Content>
 </template>
 
 <script>
@@ -59,17 +59,11 @@ export default {
 
 <style scoped>
   /*以fixed的方式固定mescroll的高度*/
-  .page {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    height: auto;
-  }
-  /*以fixed的方式固定mescroll的高度*/
   .mescroll {
-    position: fixed;
+    position: absolute;
     top: 45px;
     bottom: 0;
+    width: 100%;
     height: auto;
   }
   .mescroll .notice {

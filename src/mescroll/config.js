@@ -148,6 +148,7 @@ export function getConfig(vm){
         auto: vm.autoLoad, // 是否在初始化时以上拉加载的方式自动加载第一页数据; 默认true
         isLock: !vm.enablePagination, // 是否锁定上拉,默认false
         callback: loadData,
+        isBounce: vm.isBounce,
         page: {
             num: 0, // 当前页 默认0,回调之前会加1; 即callback(page)会从1开始
             size: vm.pagination[vm.pageSizeObj.queryName], // 每页数据条数

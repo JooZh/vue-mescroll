@@ -43,6 +43,7 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Item from '../components/ProductItem.vue'
+
 export default {
   name: 'mescrollSwiperNav',
   components: {

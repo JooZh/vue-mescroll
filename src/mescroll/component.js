@@ -1,5 +1,5 @@
-import '../libs/mescroll.js/dist/mescroll.min.css';
-import MeScroll from '../libs/mescroll.js/dist/mescroll.min.js';
+import 'mescroll.js/mescroll.min.css'
+import MeScroll from 'mescroll.js';
 import { getConfig } from './config.js';
 
 const PAGINATION = {
@@ -18,6 +18,9 @@ export default (config) => {
                 description: '是否自动初始化组件',
                 default: true
             },
+            /**====================================
+             * 快捷配置，该配置优先于全局配置
+             *====================================*/
             // 下拉刷新参数
             enableRefresh:{
                 type: Boolean,
@@ -74,33 +77,18 @@ export default (config) => {
             dataHandle: {
                 type: Function,
                 required: false,
-                description: '当返回的数据不正确的时候进行数据处理，并且返回',
-                default: data=>data
+                description: '当返回的数据层级节点不正确的时候进行数据处理，并且返回处理后的结果',
+                default: data => data
             },
 
-            // 其他参数
+            // 滚动相关配置
             onScroll: {
                 type: Function,
                 required: false,
                 description: '监听滚动，获取scrollTop的值',
                 default: null
             },
-            // 全部配置
-            downConfig:{
-                type: Object,
-                required: false,
-                description: '下拉刷新配置参数',
-                default: ()=>{return config.down || null } 
-            },
-            upConfig:{
-                type: Object,
-                required: false,
-                description: '上拉加载配置参数',
-                default: ()=>{return config.up || {
-                        isBounce: false
-                    } 
-                } 
-            },
+            
             // 分页渲染可选功能
             viewItemComponent: {
                 type: Object,
@@ -120,6 +108,32 @@ export default (config) => {
                 description: '列表渲染指定的 v-for 的 key 名称, 默认取index',
                 default: null
             },
+            // 个性化配置
+            isBounce:{
+                type: Boolean,
+                required: false,
+                description: '是否允许ios下的回弹效果',
+                default: false
+            },
+            stickyConfig:{
+                type: Object,
+                required: false,
+                description: '吸顶效果配置参数',
+                default: null
+            },
+            // 全部配置
+            downConfig:{
+                type: Object,
+                required: false,
+                description: '下拉刷新配置参数',
+                default: ()=>{ return config.down || null } 
+            },
+            upConfig:{
+                type: Object,
+                required: false,
+                description: '上拉加载配置参数',
+                default: ()=>{ return config.up || null } 
+            },
         },
         data() {
             return {
@@ -130,6 +144,7 @@ export default (config) => {
                 lastScrollTop: 0, // 路由切换时滚动条的位置
                 lastBounce: null, // 路由切换时是否禁止ios回弹,
                 isRefresh:false,
+                navWarp:null, // 吸顶导航
             };
         },
         computed: {
@@ -164,6 +179,7 @@ export default (config) => {
             if(this.autoInit){
                 this.init()
             }
+            
         },
         methods: {
             init(){
@@ -184,12 +200,39 @@ export default (config) => {
             initMeScroll() {
                 if (this.mescroll) return;
                 this.mescroll = new MeScroll(this.$refs.mescroll, getConfig(this));
+                // 初始化吸顶效果
+                if(this.stickyConfig){
+                    this.initSticky()
+                }
+            },
+            initSticky(){
+                if(!this.stickyConfig.el) return;
+                this.navWarp = document.querySelector(this.stickyConfig.el);
+                if(this.mescroll.os.ios){
+                    //ios的悬停效果,通过给navWarp添加nav-sticky样式来实现
+                    this.navWarp.classList.add("nav-sticky-ios");
+                }else{
+                    //android和pc端悬停效果,通过监听mescroll的scroll事件,控制navContent是否为fixed定位来实现
+                    this.navWarp.style.height = this.navWarp.getBoundingClientRect().height+"px";//固定高度占位,避免悬浮时列表抖动
+                    const navContent=this.navWarp.children[0];
+                    this.mescroll.optUp.onScroll = (mescroll, y, isUp)=>{
+                        if(y >= this.navWarp.offsetTop){
+                            navContent.classList.add("nav-sticky-android");
+                        }else{
+                            navContent.classList.remove("nav-sticky-android");
+                        }
+                    }
+                }
             },
             reload() {
                 if(this.enablePagination){
                     this.initPagination();
                     this.isRefresh = true;
                 }
+                // if(this.stickyConfig){
+                //     var minHight = this.mescroll.getClientHeight() - this.navWarp.offsetHeight;
+				// 	document.querySelector(".mescroll-content").style.minHeight = minHight+"px";
+                // }
                 this.mescroll.resetUpScroll()
             },
             loadPagination() {
@@ -251,6 +294,11 @@ export default (config) => {
                     return this.$slots.header
                 }
             }
+            const sticky = () => {
+                if (this.$slots.sticky) {
+                    return this.$slots.sticky
+                }
+            }
             const footer = () => {
                 if (this.$slots.footer) {
                     return this.$slots.footer
@@ -258,7 +306,11 @@ export default (config) => {
             }
             const center = () =>{
                 if (this.viewItemComponent) {
-                    return createElement('div', this.listData.map((item,index)=> {
+                    return createElement('div', {
+                        attrs: {
+                            class:'mescroll-content',
+                        },
+                    }, this.listData.map((item,index)=> {
                         return createElement(this.viewItemComponent, {
                             props:{
                                 item:item
@@ -278,7 +330,12 @@ export default (config) => {
                         class:'mescroll',
                     },
                 },
-                [ header(), center(), footer() ]
+                [ 
+                    header(),
+                    sticky(), 
+                    center(), 
+                    footer() 
+                ]
             )
         }
     }

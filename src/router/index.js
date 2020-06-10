@@ -7,6 +7,7 @@ import RefreshPagination from '@/pages/base/refresh-pagination'
 import RefreshPagination2 from '@/pages/base/refresh-pagination2'
 import Tabs from '@/pages/base/tabs'
 import TabsSwiper from '@/pages/base/tabs-swiper'
+import Sticky from '@/pages/base/sticky'
 
 Vue.use(Router)
 
@@ -40,6 +41,10 @@ export default new Router({
       path: '/tabs-swiper',
       name: 'TabsSwiper',
       component: TabsSwiper
+    }, {
+      path: '/sticky',
+      name: 'Sticky',
+      component: Sticky
     }
   ]
 })

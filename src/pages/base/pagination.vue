@@ -22,10 +22,6 @@
 </template>
 
 <script>
-// 引入mescroll.min.js和mescroll.min.css
-import MeScroll from 'mescroll.js'
-import 'mescroll.js/mescroll.min.css'
-
 export default {
   name: 'listNews',
   data () {

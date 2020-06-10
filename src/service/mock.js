@@ -75,7 +75,7 @@ Mock.mock(mockApi.getProducts, (options)=>{
         'data|10': [{
             'id|+1': pageNumber ===1 ? 1 : pageNumber*10,
             'img': '/static/mock/img/pd3.jpg',
-            'name': '商品名字商品名字商品名字商品名字商品名字商品名字商品名字',
+            'name': '商品名字商品名字商品名字商商品名字商',
             'price': 112,
             'sold':'30',
         }]

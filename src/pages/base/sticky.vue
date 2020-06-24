@@ -4,12 +4,8 @@
     <Header title="Swiper"></Header>
     <div class="tabs-center">
       <vue-mescroll
-        :queryParams="queryParams"
         :enableRefresh="false"
-        :watchQueryChange="true"
-        :loadDataCallBack="loadData"
-        :getData="getData"
-        :dataHandle="dataHandle"
+        :enablePagination="false"
         :stickyConfig="stickyConfig"
       >
         <div class="slot-header" slot="header">
@@ -33,12 +29,15 @@
           </div>
         </div>
         <!--轮播-->
-
         <swiper class="mescroll-content" ref="mySwiper" :options="swiperOption">
           <swiper-slide v-for="tab in tabs" :key="tab.tabId">
-            <div ref="swiperSlide">
-              <Item v-for="item in tab.listData" :item="item" :key="item.id"></Item>
-            </div>
+            <vue-mescroll
+              :enableRefresh="false"
+              :loadDataCallBack="loadData"
+              :dataHandle="dataHandle"
+              :viewItemComponent="Item"
+            >
+            </vue-mescroll>
           </swiper-slide>
         </swiper>
       </vue-mescroll>
@@ -61,14 +60,15 @@ export default {
   },
   data () {
     return {
+      Item:Item,
       stickyConfig:{
         el:'.tabs-warp',
         className:'nav-sticky'
       },
       tabs: [
-        {name: '首页', tabId:1, isListInit: true, listData:[]}, 
-        {name: '奶粉', tabId:2, isListInit: false, listData:[]}, 
-        {name: '面膜', tabId:3, isListInit: false, listData:[]}
+        {name: '首页', tabId:1, isListInit: true}, 
+        {name: '奶粉', tabId:2, isListInit: false}, 
+        {name: '面膜', tabId:3, isListInit: false}
       ],
       tabWidth: 80, // 每个tab的宽度
       barWidth: 40, // tab底部红色线的宽度
@@ -106,12 +106,6 @@ export default {
       this.curIndex = tabIndex; // 切换菜单
       this.selectTab = tab
       this.queryParams.type = this.selectTab.tabId
-
-      this.$refs.swiperSlide.forEach(item=>{
-        console.log(item)
-        item.style.display = 'none';
-      })
-      this.$refs.swiperSlide[tabIndex].style.display="block"
       this.swiper.slideTo(tabIndex);
     },
     loadData(query){

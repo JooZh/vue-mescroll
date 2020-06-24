@@ -145,9 +145,10 @@ export function getConfig(vm){
     let upConfig = {};
 
     let bindUpConfig = {
+        use: vm.enablePagination,
         auto: vm.autoLoad, // 是否在初始化时以上拉加载的方式自动加载第一页数据; 默认true
         isLock: !vm.enablePagination, // 是否锁定上拉,默认false
-        callback: loadData,
+        callback: vm.enablePagination ? loadData : null,
         isBounce: vm.isBounce,
         page: {
             num: 0, // 当前页 默认0,回调之前会加1; 即callback(page)会从1开始
@@ -172,7 +173,7 @@ export function getConfig(vm){
         use: vm.enableRefresh, // 是否启用下拉刷新; 默认true
         auto: vm.autoRefresh, // 是否在初始化完毕之后自动执行下拉刷新的回调; 默认true
         autoShowLoading: vm.autoRefresh,
-        callback: vm.reload,
+        callback: vm.enableRefresh ? vm.reload : null ,
     }
     downConfig = bindDownConfig;
     if(vm.downConfig){

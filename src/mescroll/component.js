@@ -179,7 +179,6 @@ export default (config) => {
             if(this.autoInit){
                 this.init()
             }
-            
         },
         methods: {
             init(){
